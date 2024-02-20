@@ -2,10 +2,10 @@
 Given two seperate Spotify playlists, split into 'liked', and 'disliked' or 'not liked' songs, in .csv form, this 
 machine learning algorithm will attempt to predict whether or not a song is liked based off the given playlists.
 The model also makes use of "Exportify" to download the playlists into a .csv along with the acompanying data
-provided directly by Spotify.This algorithm uses sklearn's Logistic regression model and a number of numeric 
-features to predict the boolean result. Below are the given features, some of which are removed in the
-preliminary model for simplicity. Future models will hopefully make use of the non-numeric data to imporove
-results.
+provided directly by Spotify. The resulting dataframes are then merged with a corresponding 'isLiked* column.
+This algorithm uses sklearn's Logistic regression model and a number of numeric features to predict the boolean
+result. Below are the given features, some of which are removed in the preliminary model for simplicity. Future 
+models will hopefully make use of the non-numeric data to imporove results.
 
 ### acousticness
 ```
@@ -41,17 +41,10 @@ Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of inten
   Example: 0.842
 ```
 
-### id
-```
-string
-The Spotify ID for the track.
-  Example: "2takcwOaAZWiXQijPHIx7B"
-```
-
 ### instrumentalness
 ```
 number [float]
-Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap
+  Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap
  or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the
  track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is
  higher as the value approaches 1.0.
@@ -120,12 +113,27 @@ each bar (or measure). The time signature ranges from 3 to 7 indicating time sig
   Example: 4
 ```
 
-### uri
+### Song ID
 ```
 string
 The Spotify URI for the track.
-Example: "spotify:track:2takcwOaAZWiXQijPHIx7B"
+Example: "2takcwOaAZWiXQijPHIx7B"
 ```
+
+### Artist ID
+```
+string
+The Spotify URI for the Artist.
+Example: "spotify:artist:2takcwOaAZWiXQijPHIx7B"
+```
+
+### Added By
+```
+string
+The Spotify URI for the user who added the song.
+Example: "spotify:user:2takcwOaAZWiXQijPHIx7B"
+```
+
 ### valence
 ```
 number [float]
