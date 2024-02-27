@@ -1,11 +1,27 @@
 # Music-Machine-Learning
-Given two seperate Spotify playlists, split into 'liked', and 'disliked' or 'not liked' songs, in .csv form, this 
-machine learning algorithm will attempt to predict whether or not a song is liked based off the given playlists.
-The model also makes use of "Exportify" to download the playlists into a .csv along with the acompanying data
-provided directly by Spotify. The resulting dataframes are then merged with a corresponding 'isLiked* column.
-This algorithm uses sklearn's Logistic regression model and a number of numeric features to predict the boolean
-result. Below are the given features, some of which are removed in the preliminary model for simplicity. Future 
-models will hopefully make use of the non-numeric data to imporove results.
+
+The purpose of this project is to create a logistic regression model based on the users liked and disliked songs.
+The model requires two input playlists, liked and disliked, to be run through [Exportify](https://exportify.net/) to append necessary
+information and format the data into .csv files. The model uses key numeric and boolean values provided by
+Exportify to achieve an overall accuracy of 75% on new data. See below for more information on features and their
+values Included in the repository files on data exploration, model creation, and additional model validation. See 
+below for more information of these files.
+
+
+## Files
+**data_exploration** (.ipynb and .pdf): 
+An exploration throughout the data to see what can be done with the data as
+well as a determination of usefull/not usefull features. Provided in both .ipynb and .pdf files for viewing
+convenience.
+
+**Model_exploration** (.ipynb and .pdf): 
+A simple creation of the model and f1 accuracy of the model. Provided in
+both .ipynb and .pdf files for viewing convenience.
+
+## Features 
+
+Feature descriptions, ranges, and values come directly from Spotify. Values are accessed from Spotify using
+[Exportify](https://exportify.net/). Values without a listed range have no hard set range.
 
 ### acousticness
 ```
@@ -40,6 +56,7 @@ number [float]
 Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy,
 while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute
 include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+  Range: 0 - 1
   Example: 0.842
 ```
 
@@ -50,6 +67,7 @@ number [float]
 in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness
 value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are
 intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
+  Range: 0 - 1
   Example: 0.00686
 ```
 
@@ -69,6 +87,7 @@ number [float]
   Detects the presence of an audience in the recording. Higher liveness values represent an increased
 probability that the track was performed live. A value above 0.8 provides strong likelihood that the
 track is live.
+  Range: 0 - 1
   Example: 0.0866
 ```
 
@@ -87,6 +106,7 @@ Example: -5.883
 integer
   Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic
 content is derived. Major is represented by 1 and minor is 0.
+  Range: 0 or 1
   Example: 0
 ```
 
@@ -98,6 +118,7 @@ recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute 
 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe
 tracks that may contain both music and speech, either in sections or layered, including such cases as
 rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
+  Range: 0 - 1
   Example: 0.0556
 ```
 
@@ -119,6 +140,16 @@ beats are in each bar (or measure). The time signature ranges from 3 to 7 indica
   Example: 4
 ```
 
+### valence
+```
+number [float]
+  A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence
+sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g.
+sad, depressed, angry).
+  Range: 0 - 1
+  Example: 0.428
+```
+
 ### Song ID
 ```
 string
@@ -138,14 +169,4 @@ Example: "spotify:artist:2takcwOaAZWiXQijPHIx7B"
 string
   The Spotify URI for the user who added the song.
 Example: "spotify:user:2takcwOaAZWiXQijPHIx7B"
-```
-
-### valence
-```
-number [float]
-  A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence
-sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g.
-sad, depressed, angry).
-  Range: 0 - 1
-  Example: 0.428
 ```
